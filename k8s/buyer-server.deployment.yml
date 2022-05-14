@@ -12,28 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: buyer-service-app
-  labels:
-    app: buyer-service-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: buyer-service-app
-  template:
-    metadata:
-      labels:
         app: buyer-service-app
-    spec:
-      containers:
-        - name: buyer-service-app
-          image: manuka99/sliit-ctse-buyer-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9003-service-app
     spec:
       containers:
         - name: buyer-service-app

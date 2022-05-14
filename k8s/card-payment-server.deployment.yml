@@ -12,28 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: card-payment-service-app
-  labels:
-    app: card-payment-service-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: card-payment-service-app
-  template:
-    metadata:
-      labels:
         app: card-payment-service-app
-    spec:
-      containers:
-        - name: card-payment-service-app
-          image: manuka99/sliit-ctse-card-payment-gateway-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9004-service-app
     spec:
       containers:
         - name: card-payment-service-app
