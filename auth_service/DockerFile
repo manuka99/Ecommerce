@@ -2,7 +2,7 @@ FROM node:18-alpine3.14
 
 WORKDIR /app
 
-COPY . .
+COPY auth_service .
 
 RUN npm i
 
