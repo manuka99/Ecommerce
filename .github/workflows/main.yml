@@ -21,6 +21,13 @@ jobs:
           file: auth_service/DockerFile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-auth-service:${{ github.sha }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: buyer_service/DockerFile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-buyer-service:${{ github.sha }}
       # - name: Update config files in k8s
       #   run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
       # - uses: actions-hub/kubectl@master
