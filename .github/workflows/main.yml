@@ -20,32 +20,47 @@ jobs:
           context: .
           file: auth_service/DockerFile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-auth-service:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-auth-service:latest
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
           file: buyer_service/DockerFile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-buyer-service:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-buyer-service:latest
       - name: Build and push card payment gateway service
         uses: docker/build-push-action@v2
         with:
           context: .
           file: card_payment_gateway_service/DockerFile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-card-payment-gateway-service:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-card-payment-gateway-service:latest
       - name: Build and push mobile payment gateway service
         uses: docker/build-push-action@v2
         with:
           context: .
           file: mobile_payment_gateway_service/DockerFile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-mobile-payment-gateway-service:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/sliit-ctse-mobile-payment-gateway-service:latest
       # - name: Update config files in k8s
-      #   run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
+      #   run: sed -i.bak 's/{{tag}}/latest/g' k8s/deploy.yaml  && rm k8s/*.bak
       # - uses: actions-hub/kubectl@master
       #   env:
       #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       #   with:
       #     args: apply -f ./k8s
+
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: kubectl - Google Cloud GKE cluster.
+        uses: ameydev/gke-kubectl-action@master
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GKE_SA_KEY }}
+          CLUSTER_NAME: ${{ secrets.GKE_CLUSTER }}
+          ZONE_NAME: ${{ secrets.GKE_ZONE }}
+        with:
+          args: apply -f k8s/

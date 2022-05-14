@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobile-payment-service-app
+  labels:
+    app: mobile-payment-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mobile-payment-service-app
+  template:
+    metadata:
+      labels:
+        app: apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobile-payment-service-app
+  labels:
+    app: mobile-payment-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mobile-payment-service-app
+  template:
+    metadata:
+      labels:
+        app: mobile-payment-service-app
+    spec:
+      containers:
+        - name: mobile-payment-service-app
+          image: manuka99/sliit-ctse-mobile-payment-gateway-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9005-service-app
+    spec:
+      containers:
+        - name: mobile-payment-service-app
+          image: manuka99/sliit-ctse-mobile-payment-gateway-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9005

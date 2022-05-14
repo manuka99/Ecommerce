@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mobile-payment-service-svc
+spec:
+  ports:
+    - targetPort: 9005
+      port: 80
+  selector:
+    app: mobile-payment-service-app
