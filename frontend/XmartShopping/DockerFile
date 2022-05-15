@@ -7,7 +7,7 @@ RUN npm i
 RUN npm install react-scripts@4.0.3 -g
 RUN npm run build
 
-production environment
+# production environment
 FROM nginx:stable-alpine
 COPY --from=build /app/build /usr/share/nginx/html
 # new
