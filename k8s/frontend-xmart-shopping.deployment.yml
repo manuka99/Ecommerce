@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-xmart-shopping-app
+  labels:
+    app: frontend-xmart-shopping-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-xmart-shopping-app
+  template:
+    metadata:
+      labels:
+        app: frontend-xmart-shopping-app
+    spec:
+      containers:
+        - name: frontend-xmart-shopping-app
+          image: manuka99/sliit-ctse-frontend-xmart-shopping:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9008
+          env:
+            - name: REACT_APP_BASE_URL
+              value: http://192.1677.61.1:8280
