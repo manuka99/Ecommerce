@@ -3,7 +3,7 @@ const body_parser = require("body-parser");
 const { connect } = require("mongoose");
 const express = require("express");
 const passport = require("passport");
-const { DB, PORT } = require("./config/index");
+const { DB, PORT } = require("./config");
 
 // init app
 const app = express();
