@@ -2,7 +2,7 @@ FROM node:18-alpine3.14
 
 WORKDIR /app
 
-COPY buyer_service/* .
+COPY buyer_service/ .
 
 RUN npm i
 

@@ -2,7 +2,7 @@ FROM node:18-alpine3.14
 
 WORKDIR /app
 
-COPY mobile_payment_gateway_service/* .
+COPY mobile_payment_gateway_service/ .
 
 RUN npm i
 

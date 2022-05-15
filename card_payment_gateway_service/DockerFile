@@ -2,7 +2,7 @@ FROM node:18-alpine3.14
 
 WORKDIR /app
 
-COPY card_payment_gateway_service/* .
+COPY card_payment_gateway_service/ .
 
 RUN npm i
 
