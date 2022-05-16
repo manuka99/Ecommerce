@@ -1,7 +1,7 @@
 name: Docker Build Deploy
 on:
   push:
-    branches: [master]
+    branches: [IT19133850]
 jobs:
   build:
     runs-on: ubuntu-latest
