@@ -1,0 +1,21 @@
+apiVersion: app/v1
+kind: Deployment
+metadata: 
+  name: deliveryapp_deployment
+  labels: 
+    app: deliveryapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deliveryapp
+  template: 
+    metadata: 
+      labels: 
+        app: deliveryapp
+    spec:
+      containers: 
+      - name: mydelivery
+        image: praveenat/it19243672:Latest
+        ports:
+        -containerPort: 4000
